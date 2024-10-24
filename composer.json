@@ -8,7 +8,6 @@
         "php": "^8.2",
         "anhskohbo/no-captcha": "^3.6",
         "biscolab/laravel-recaptcha": "^6.1",
-        "caouecs/laravel-lang": "*",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.5"
