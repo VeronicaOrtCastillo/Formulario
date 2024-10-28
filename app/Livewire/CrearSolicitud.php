@@ -27,6 +27,13 @@ class CrearSolicitud extends Component
         'files' => 'nullable|file|mimes:pdf|max:2048', // Reglas para el archivo
     ];
 
+    public function mount()
+    {
+        // Prellenar el nombre y el correo del usuario autenticado
+        $this->name = Auth::user()->name;
+        $this->email = Auth::user()->email;
+    }
+
     public function crearSolicitud()
     {
         $datos = $this->validate();
