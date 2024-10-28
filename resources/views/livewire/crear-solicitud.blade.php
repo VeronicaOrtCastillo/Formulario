@@ -1,5 +1,6 @@
 <form class="md:w-1/2 space-y-5" wire:submit.prevent='crearSolicitud'>
     <!-- Contenido del formulario -->
+    <!-- Nombre -->
     <div>
         <x-input-label for="name" :value="__('Nombre')" />
         <x-text-input 
@@ -8,14 +9,14 @@
             type="text" 
             wire:model="name" 
             :value="old('name')" 
+            style="text-transform: uppercase; font-size: 0.875rem;"
             placeholder="Ingresa tu nombre completo"
         />
-
         @error('name')
             <livewire:mostrar-alerta :message="$message" />
         @enderror
     </div>
-    
+    <!-- CURP -->
     <div>
         <x-input-label for="curp" :value="__('CURP')" />
         <x-text-input 
@@ -24,13 +25,14 @@
             type="text" 
             wire:model="curp" 
             :value="old('curp')" 
+            style="text-transform: uppercase; font-size: 0.875rem;"
             placeholder="Ingresa tu curp"
         />
-
         @error('curp')
             <livewire:mostrar-alerta :message="$message" />
         @enderror
     </div>
+    <!-- RFC -->
     <div>
         <x-input-label for="rfc" :value="__('RFC')" />
         <x-text-input 
@@ -39,6 +41,8 @@
             type="text" 
             wire:model="rfc" 
             :value="old('rfc')" 
+            maxlength="13" 
+            style="text-transform: uppercase; font-size: 0.875rem;"
             placeholder="Ingresa tu rfc"
         />
 
@@ -46,21 +50,31 @@
             <livewire:mostrar-alerta :message="$message" />
         @enderror
     </div>
+    <!-- Email -->
     <div>
         <x-input-label for="email" :value="__('Email')" />
+
         <x-text-input 
             id="email" 
-            class="block mt-1 w-full" 
+            class="block mt-1 w-full placeholder-uppercase" 
             type="email" 
             wire:model="email" 
             :value="old('email')" 
-            placeholder="Ingresa tu correo electronico"
+            placeholder="Ingresa tu Correo Electronico"
+            style="text-transform: lowercase; font-size: 0.875rem;"
         />
 
         @error('email')
             <livewire:mostrar-alerta :message="$message" />
         @enderror
     </div>
+
+    <style>
+        .placeholder-uppercase::placeholder {
+            text-transform: uppercase; /* Asegura que el placeholder esté en mayúsculas */
+        }
+    </style>
+    <!--Clabe Interbancaria-->
     <div>
         <x-input-label for="clabe" :value="__('Clabe Interbancaria')" />
         <x-text-input 
@@ -69,6 +83,8 @@
             type="text" 
             wire:model="clabe" 
             :value="old('clabe')" 
+            maxlength="18" 
+            style="text-transform: uppercase; font-size: 0.875rem;"
             placeholder="Ingresa tu clabe interbancaria"
         />
         @error('clabe')

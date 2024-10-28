@@ -8,21 +8,43 @@
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" style="text-transform: lowercase;" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Contraseña')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
+            <div class="relative">
+                <x-text-input 
+                    id="password" 
+                    class="block mt-1 w-full"
+                    type="password"
+                    name="password"
+                    required autocomplete="new-password" />
+                <button 
+                    type="button" 
+                    onclick="togglePassword('password', this)" 
+                    class="absolute right-2 top-1/2 transform -translate-y-1/2"
+                    style="font-size: 0.875rem; color: #6b7280; opacity: 0.8; padding: 0;">
+                        Mostrar
+                </button>
+            </div>
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
+
+        <script>
+            function togglePassword(fieldId, button) {
+                const field = document.getElementById(fieldId);
+                if (field.type === "password") {
+                    field.type = "text";
+                    button.textContent = "Ocultar";
+                } else {
+                    field.type = "password";
+                    button.textContent = "Mostrar";
+                }
+            }
+        </script>
 
         <!-- Remember Me -->
         <div class="block mt-4">
