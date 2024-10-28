@@ -4,6 +4,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SolicitudController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\HomeController;
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -22,3 +25,5 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::get('admin/dashboard',[HomeController::class,'index']);
