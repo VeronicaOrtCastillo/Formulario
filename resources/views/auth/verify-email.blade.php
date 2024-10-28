@@ -1,11 +1,13 @@
 <x-guest-layout>
     <div class="mb-4 text-sm text-gray-600">
-        {{ __('Confirmaremos tu correo electronico antes de continuar, revisa tu correo y presiona sobre el boton de confirmacion') }}
+        {{ __('Confirmaremos tu correo electronico antes de continuar, revisa tu correo y presiona sobre el boton de confirmacion.') }}
+        <p class="mt-4 text-red-600">{{ __('Nota: Si no recibiste el correo, presiona el boton Reenviar correo de Confirmacion') }}</p>
+
     </div>
 
     @if (session('status') == 'verification-link-sent')
         <div class="mb-4 font-medium text-sm text-green-600">
-            {{ __('Se ha enviado un correo de confirmacion al correo que colocaste en el registro') }}
+            {{ __('Se ha enviado un nuevo correo de confirmacion al correo que colocaste en el registro') }}
         </div>
     @endif
 
@@ -15,7 +17,7 @@
 
             <div>
                 <x-primary-button class="w-full justify-center bg-red-700 hover:bg-red-900">
-                    {{ __('Enviar Correo de Confirmación') }}
+                    {{ __('Reenviar Correo de Confirmación') }}
                 </x-primary-button>
             </div>
         </form>
