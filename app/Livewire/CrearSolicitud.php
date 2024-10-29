@@ -63,6 +63,9 @@ class CrearSolicitud extends Component
 
     public function render()
     {
-        return view('livewire.crear-solicitud');
+        // Pasar el estado del usuario a la vista
+        $userStatus = Auth::user()->status; // Asumiendo que 'status' indica habilitado o deshabilitado
+
+        return view('livewire.crear-solicitud',['userStatus' => $userStatus]);
     }
 }
