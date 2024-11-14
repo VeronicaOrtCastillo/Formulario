@@ -1,7 +1,7 @@
 <div>
     @if (!$userStatus) <!-- Solo mostrar si el usuario está deshabilitado --> 
         
-        <form class="md:w-1/2 space-y-5" wire:submit.prevent='crearSolicitud'>
+        <form class="md:w-1/1 space-y-5" wire:submit.prevent='crearSolicitud'>
                 <!-- Contenido del formulario -->
                 <!-- Nombre -->
                 <div>
