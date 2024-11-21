@@ -38,6 +38,10 @@ class CrearSolicitud extends Component
     {
         $datos = $this->validate();
 
+        //Convertir CURP Y RFC a mayusculas antes de guardar
+        $datos['curp'] = strtoupper($datos['curp']);
+        $datos['rfc'] = strtoupper($datos['rfc']);
+
         //almacenar el documento
         $fil_save = $this->files->store('documentos','public');
         $datos['files'] = $fil_save;
