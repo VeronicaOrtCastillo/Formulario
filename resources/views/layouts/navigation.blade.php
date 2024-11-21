@@ -17,7 +17,14 @@
                             {{ __('Inicio') }}
                         </x-nav-link>
                     @endif
-                    
+
+                    @if(Auth::user()->usertype === 'admin')
+                        <!-- Solo mostrar el enlace si el usuario es admin -->
+                        <x-nav-link :href="route('admin.Empleados')" :active="request()->routeIs('admin.Empleados')">
+                            {{ __('Empleados') }}
+                        </x-nav-link>
+                    @endif
+
                     <x-nav-link :href="route('solicitudes.create')" :active="request()->routeIs('solicitudes.create')">
                         {{ __('Pago') }}
                     </x-nav-link>
