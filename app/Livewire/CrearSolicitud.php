@@ -14,7 +14,8 @@ class CrearSolicitud extends Component
     public $curp;
     public $rfc;
     public $clabe;
-    public $files;
+    public $files = [];
+    public $solicitudEnviada = false;
 
     use WithFileUploads;
 
@@ -24,7 +25,7 @@ class CrearSolicitud extends Component
         'curp' => 'required|string|max:18',
         'rfc' => 'required|string|max:13',
         'clabe' => 'required|string|max:18',
-        'files' => 'nullable|file|mimes:pdf|max:2048', // Reglas para el archivo
+        'files.*' => 'nullable|file|mimes:pdf|max:2048', // Reglas para el archivo
     ];
 
     public function mount()
@@ -32,20 +33,34 @@ class CrearSolicitud extends Component
         // Prellenar el nombre y el correo del usuario autenticado
         $this->name = Auth::user()->name;
         $this->email = Auth::user()->email;
+
+        // Verificar si el usuario ya tiene una solicitud
+        $this->solicitudEnviada = Solicitud::where('user_id', Auth::id())->exists();
+    
     }
 
     public function crearSolicitud()
     {
+        // Verificar si el usuario ya tiene una solicitud
+        if ($this->solicitudEnviada) {
+            session()->flash('mensaje', 'Ya has enviado una solicitud.');
+            return;
+        }
+
         $datos = $this->validate();
 
         //Convertir CURP Y RFC a mayusculas antes de guardar
         $datos['curp'] = strtoupper($datos['curp']);
         $datos['rfc'] = strtoupper($datos['rfc']);
 
-        //almacenar el documento
-        $fil_save = $this->files->store('documentos','public');
-        $datos['files'] = $fil_save;
-        
+        //almacenar los archivos
+        $archivosGuardados = [];
+        if (!empty($this->files)) {
+            foreach ($this->files as $file) {
+                $archivosGuardados[] = $file->store('documentos', 'public');
+            }
+        }
+            
         //crear la solicitud
         Solicitud::create([
             'name' => $datos['name'],
@@ -53,9 +68,13 @@ class CrearSolicitud extends Component
             'curp' => $datos['curp'],
             'rfc' => $datos['rfc'],
             'clabe' => $datos['clabe'],
-            'files' => $datos['files'],
+            'files' => json_encode($archivosGuardados),
             'user_id'=> Auth::id(),
         ]);
+
+        // Actualizar el estado de la solicitud
+        $this->solicitudEnviada = true;
+        
         //crear el mensaje
         session()->flash('mensaje','Tu solicitud se registro correctamente');
 

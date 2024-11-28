@@ -1,5 +1,11 @@
+
 <div>
-    @if (!$userStatus) <!-- Solo mostrar si el usuario está deshabilitado --> 
+    @if ($solicitudEnviada)
+        <!-- Mostrar mensaje si la solicitud ya fue enviada -->
+        <div class="p-6 bg-red-900 text-white text-center font-semibold mt-2">
+            <p>Ya has enviado la solicitud</p>
+        </div>
+    @elseif (!$userStatus) <!-- Solo mostrar si el usuario está deshabilitado --> 
         
         <form class="md:w-1/1 space-y-5" wire:submit.prevent='crearSolicitud'>
                 <!-- Contenido del formulario -->
@@ -101,9 +107,16 @@
                         class="block mt-1 w-full"
                         type="file"
                         wire:model="files"
+                        multiple
                         accept="application/pdf"
                     />
-                    <ul id="file-list"></ul>
+                    <ul id="file-list">
+                        @if ($files)
+                            @foreach ($files as $file)
+                                <li>{{ $file->getClientOriginalName() }}</li>
+                            @endforeach
+                        @endif
+                    </ul>
 
                     @error('files')
                     <livewire:mostrar-alerta :message="$message" />

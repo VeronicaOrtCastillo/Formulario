@@ -1,28 +1,28 @@
 <div>
-    <h2 class="text-xl font-semibold mb-4">Listado de Empleados</h2>
-    <table class="table-auto w-full border-collapse border border-red-300">
-        <thead>
+    <h1 class="text-xl text-center font-semibold mb-4">Listado de Empleados</h1>
+    <table class="table-auto w-full text-left border-collapse rounded-lg shadow-md overflow-hidden">
+        <thead class="bg-red-900 text-white">
             <tr>
-                <th class="px-2 py-2 border border-red-300">ID</th>
-                <th class="px-4 py-2 border border-red-300">Nombre</th>
-                <th class="px-4 py-2 border border-red-300">Correo Electrónico</th>
-                <th class="px-4 py-2 border border-red-300">Estado Actual</th>
-                <th class="px-4 py-2 border border-red-300">Modificar</th>
+                <th class=" border px-6 py-3 font-semibold  text-center">ID</th>
+                <th class=" border px-6 py-3 font-semibold  text-center">Nombre</th>
+                <th class=" border px-6 py-3 font-semibold  text-center">Correo Electrónico</th>
+                <th class=" border px-6 py-3 font-semibold  text-center">Estado Actual</th>
+                <th class=" border px-6 py-3 font-semibold  text-center">Modificar</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="bg-white divide-y divide-gray-200">
             @foreach($employees as $employee)
-                <tr>
-                    <td class="px-4 py-2 border-gray-300">{{ $employee->id }}</td>
-                    <td class="px-4 py-2 border-gray-300">{{ $employee->name }}</td>
-                    <td class="px-4 py-2 border-gray-300">{{ $employee->email }}</td>
-                    <td class="px-4 py-2 border-gray-300">{{ $employee->status ? 'Activo' : 'Inactivo' }}</td>
-                    <td class="px-4 py-2 border-gray-300">
+                <tr class="hover:bg-gray-200">
+                    <td class="px-6 py-3 border border-gray-300 text-center">{{ $employee->id }}</td>
+                    <td class="px-6 py-3 border border-gray-300 text-center">{{ $employee->name }}</td>
+                    <td class="px-6 py-3 border border-gray-300 text-center">{{ $employee->email }}</td>
+                    <td class="px-6 py-3 border border-gray-300 text-center">{{ $employee->status ? 'Activo' : 'Inactivo' }}</td>
+                    <td class="px-6 py-3 border border-gray-300 text-center">
                         <!-- Aquí puedes agregar botones para habilitar/deshabilitar -->
                         @if($employee->status)
-                            <button wire:click="deactivate({{ $employee->id }})" class="bg-red-500 text-white px-2 py-1 rounded">Desactivar</button>
+                            <button wire:click="deactivate({{ $employee->id }})" class="bg-red-800 text-white px-2 py-1 rounded">Desactivar</button>
                         @else
-                            <button wire:click="activate({{ $employee->id }})" class="bg-green-500 text-white px-2 py-1 rounded">Activar</button>
+                            <button wire:click="activate({{ $employee->id }})" class="bg-orange-800 text-white px-2 py-1 rounded">Activar</button>
                         @endif
                     </td>
                 </tr>

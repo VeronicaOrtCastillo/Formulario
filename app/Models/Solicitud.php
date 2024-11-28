@@ -20,5 +20,14 @@ class Solicitud extends Model
         'files',
         'user_id'
     ];
+    
+    protected $casts = [
+        'files' => 'array',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Solicitud;
 use Illuminate\Http\Request;
 
 class SolicitudController extends Controller
@@ -11,7 +12,10 @@ class SolicitudController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $solicitudes = Solicitud::all(); // Obtenemos todas las solicitudes
+        return view('solicitudes.index', compact('solicitudes'));
+
+        /*return view('dashboard');*/
     }
 
     /**

@@ -1,11 +1,13 @@
 <?php
 
+use App\Livewire\Solicitudes;
+
+use App\Livewire\SolicitudTable;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\AdminController;
-
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SolicitudController;
+use App\Http\Controllers\SolicitudesController;
 
 
 Route::get('/', function () {
@@ -30,4 +32,6 @@ require __DIR__.'/auth.php';
 Route::get('admin/dashboard',[HomeController::class,'index']);
 
 Route::get('/admin/Empleados', [HomeController::class,'index'])-> name ('admin.Empleados');
+
+Route::get('/solicitudes', [SolicitudController::class, 'index'])->name('solicitudes.index');
 
