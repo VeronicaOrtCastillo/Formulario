@@ -1,3 +1,7 @@
+<title>Reestablecer Contraseña</title>
+
+<link rel="icon" type="image/png" sizes="180x180" href="/img/Principal.png">
+
 <x-guest-layout>
     <form method="POST" action="{{ route('password.store') }}">
         @csrf

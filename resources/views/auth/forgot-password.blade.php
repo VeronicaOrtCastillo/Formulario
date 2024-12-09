@@ -1,3 +1,7 @@
+<title>Contraseña Nueva</title>
+
+<link rel="icon" type="image/png" sizes="180x180" href="/img/Principal.png">
+
 <x-guest-layout>
     <div class="mb-4 text-sm text-gray-600">
         {{ __('¿Olvidaste tu Contraseña? Coloca tu email de registro y te enviaremos un enlace, para que puedas crear una nueva') }}

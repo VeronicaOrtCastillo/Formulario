@@ -1,3 +1,7 @@
+<title>Solicitudes Recibidas</title>
+
+<link rel="icon" type="image/png" sizes="180x180" href="/img/Principal.png">
+
 <x-app-layout>
     <x-slot name="header">
         <h1 class="text-2xl font-bold text-center mb-6">

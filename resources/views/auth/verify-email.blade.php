@@ -1,3 +1,7 @@
+<title>Verifica Email</title>
+
+<link rel="icon" type="image/png" sizes="180x180" href="/img/Principal.png">
+
 <x-guest-layout>
     <div class="mb-4 text-sm text-gray-600">
         {{ __('Confirmaremos tu correo electrónico antes de continuar. Revisa tu correo y presiona sobre el botón de confirmación.') }}
