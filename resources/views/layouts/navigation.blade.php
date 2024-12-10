@@ -80,15 +80,27 @@
         </div>
     </div>
 
-    <!-- Responsive Navigation Menu -->
+        <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboardx')">
-                {{ __('Inicio') }}
-            </x-responsive-nav-link>
+            @if(Auth::user()->usertype !== 'admin')
+                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    {{ __('Inicio') }}
+                </x-responsive-nav-link>
+            @endif
+
             <x-responsive-nav-link :href="route('solicitudes.create')" :active="request()->routeIs('solicitudes.create')">
                 {{ __('Pago') }}
             </x-responsive-nav-link>
+
+            @if(Auth::user()->usertype === 'admin')
+                <x-responsive-nav-link :href="route('admin.Empleados')" :active="request()->routeIs('admin.Empleados')">
+                    {{ __('Empleados') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('solicitudes.index')" :active="request()->routeIs('solicitudes.index')">
+                    {{ __('Solicitudes') }}
+                </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->
@@ -116,4 +128,5 @@
             </div>
         </div>
     </div>
+
 </nav>
