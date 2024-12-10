@@ -7,16 +7,19 @@
             <p>Revisaremos la informacion enviada</p>
 
         </div>
-    @elseif (!$userStatus) <!-- Solo mostrar si el usuario está deshabilitado --> 
+        
+    @elseif (!$userStatus || auth()->user()->usertype == 'admin') <!-- Mostrar si el usuario está deshabilitado o es administrador -->
         
         <form class="md:w-1/1 space-y-5" wire:submit.prevent='crearSolicitud'>
                 <!-- Contenido del formulario -->
                 <!-- Nombre -->
                 <div>
-                    <x-input-label for="name" :value="__('Nombre')" />
+                    <x-input-label 
+                        for="name" 
+                        :value="__('Nombre')" />
                     <x-text-input 
                         id="name" 
-                        class="block mt-1 w-full" 
+                        class="block mt-1 w-full " 
                         type="text" 
                         wire:model="name" 
                         :value="old('name')" 
@@ -143,6 +146,6 @@
                 </button>
         </form>
     @else
-        <p class="text-gray-500 text-center">Este formulario no está disponible para ti</p>
+        <p class="p-6 bg-red-900 text-white text-center font-semibold mt-2">Este formulario no está disponible para ti</p>
     @endif
 </div>
