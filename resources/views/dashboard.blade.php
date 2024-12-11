@@ -62,6 +62,30 @@
                             <p>Convierte tus archivos a PDF.</p>
                         </div>
                     </div>
+                    <!-- Tarjeta 5 -->
+                    <div class="card bg-white rounded-lg shadow-lg overflow-hidden hover:bg-red-800">
+                        <a href="https://ubicatubancodelbienestar.bienestar.gob.mx/" target="_blank">
+                            <img src="/img/Banco.jpg" 
+                                 alt="Convertir Banco" 
+                                 class="w-full h-48 object-cover">
+                        </a>
+                        <div class="p-4 text-gray-800 hover:text-white">
+                            <h3 class="text-lg font-semibold mb-2">Consulta aquí</h3>
+                            <p>Las sucursales del Banco del Bienestar</p>
+                        </div>
+                    </div>
+                    <!-- Tarjeta 6 -->
+                    <div class="card bg-white rounded-lg shadow-lg overflow-hidden hover:bg-red-800">
+                        <a href="https://www.gob.mx/" target="_blank">
+                            <img src="/img/Bienestar.jpg" 
+                                 alt="Bienestar" 
+                                 class="w-full h-48 object-cover">
+                        </a>
+                        <div class="p-4 text-gray-800 hover:text-white">
+                            <h3 class="text-lg font-semibold mb-2">Consulta aquí</h3>
+                            <p>Todos los tramites que puedes realizar</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
