@@ -2,6 +2,14 @@
 
 <link rel="icon" type="image/png" sizes="180x180" href="/img/Principal.png">
 
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden; /* Evita scroll innecesario */
+    }
+</style>
 
 <x-guest-layout>
     <form method="POST" action="{{ route('register') }}">

@@ -15,7 +15,7 @@
                 <!-- Contenedor de las tarjetas -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     <!-- Tarjeta 1 -->
-                    <div class="card bg-white rounded-lg shadow-lg overflow-hidden hover:bg-red-900">
+                    <div class="card bg-white rounded-lg shadow-lg  hover:bg-red-900">
                         <a href="https://www.gob.mx/curp/" target="_blank">
                             <img src="/img/CURP.jpeg" 
                                  alt="Consultar CURP" 
@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <!-- Tarjeta 2 -->
-                    <div class="card bg-white rounded-lg shadow-lg overflow-hidden hover:bg-red-800">
+                    <div class="card bg-white rounded-lg shadow-lg  hover:bg-red-800">
                         <a href="https://www.sat.gob.mx/aplicacion/operacion/31274/consulta-tu-clave-de-rfc-mediante-curp" target="_blank">
                             <img src="/img/RFC.png" 
                                  alt="Consulta RFC" 
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <!-- Tarjeta 3 -->
-                    <div class="card bg-white rounded-lg shadow-lg overflow-hidden hover:bg-red-800">
+                    <div class="card bg-white rounded-lg shadow-lg  hover:bg-red-800">
                         <a href="https://www.gob.mx/condusef/articulos/sabes-cual-es-la-clabe" target="_blank">
                             <img src="/img/CLABE.jpg" 
                                  alt="Clabe Interbancaria" 
@@ -51,7 +51,7 @@
                         </div>
                     </div>
                     <!-- Tarjeta 4 -->
-                    <div class="card bg-white rounded-lg shadow-lg overflow-hidden hover:bg-red-800">
+                    <div class="card bg-white rounded-lg shadow-lg  hover:bg-red-800">
                         <a href="https://www.adobe.com/mx/acrobat/online/convert-pdf.html" target="_blank">
                             <img src="/img/PDF.png" 
                                  alt="Convertir PDF" 
@@ -63,7 +63,7 @@
                         </div>
                     </div>
                     <!-- Tarjeta 5 -->
-                    <div class="card bg-white rounded-lg shadow-lg overflow-hidden hover:bg-red-800">
+                    <div class="card bg-white rounded-lg shadow-lg  hover:bg-red-800">
                         <a href="https://ubicatubancodelbienestar.bienestar.gob.mx/" target="_blank">
                             <img src="/img/Banco.jpg" 
                                  alt="Convertir Banco" 
@@ -75,7 +75,7 @@
                         </div>
                     </div>
                     <!-- Tarjeta 6 -->
-                    <div class="card bg-white rounded-lg shadow-lg overflow-hidden hover:bg-red-800">
+                    <div class="card bg-white rounded-lg shadow-lg  hover:bg-red-800">
                         <a href="https://www.gob.mx/" target="_blank">
                             <img src="/img/Bienestar.jpg" 
                                  alt="Bienestar" 
@@ -93,6 +93,14 @@
 </x-app-layout>
 
 <style>
+
+    /* Asegúrate de que el contenedor principal ocupe todo el alto de la ventana */
+    html, body {
+        height: 100%;
+        margin: 0;
+        overflow: auto;
+    }
+
     .card {
         transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
     }

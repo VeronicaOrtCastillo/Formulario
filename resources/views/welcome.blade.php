@@ -28,12 +28,12 @@
                     alt="Imagen">
                     <div class="flex-1 flex flex-col items-center justify-center space-y-16 px-4 py-8 md:px-12 md:py-16 ">
                         <!-- Botón de Iniciar sesión -->
-                        <a href="{{ route('login') }}" class="text-center px-20 py-3 bg-red-900 text-white rounded-xl hover:bg-red-600 w-full md:w-auto">
+                        <a href="{{ route('login') }}" class="text-center px-20 py-3 bg-red-900 text-white rounded-xl hover:bg-orange-900 w-full md:w-auto">
                             Iniciar sesión
                         </a>
                         <!-- Botón de Registrarse -->
-                        <a href="{{ route('register') }}" class="text-center px-20 py-3 bg-green-900 text-white rounded-xl hover:bg-green-600 w-full md:w-auto">
-                            Registrarse
+                        <a href="{{ route('register') }}" class="text-center px-20 py-3 bg-red-900 text-white rounded-xl hover:bg-orange-900 w-full md:w-auto">
+                            Registrate
                         </a>
                     </div>
                 </div>
