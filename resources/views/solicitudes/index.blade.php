@@ -4,10 +4,10 @@
 
 <x-app-layout>
     <x-slot name="header">
-        <h1 class="text-2xl font-bold text-center mb-6">
+        <h1 class="text-2xl font-bold text-red-900 text-center mb-6" style="font-family: 'Times New Roman', Times, serif; font-size: 60px;">
             {{ __('Listado de Solicitudes Recibidas') }}
         </h1>
-            <div class="py-12">
+            <div class="py-4">
                 <div class="max-w-7xl mx-auto sm:px-4 lg:px-6">
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 bg-white border-b border-gray-200 overflow-auto">

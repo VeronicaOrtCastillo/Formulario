@@ -4,7 +4,7 @@
 
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-bold text-4xl text-red-900 text-center ">
+        <h2 class="font-bold text-4xl text-red-900 text-center" style="font-family: 'Times New Roman', Times, serif; font-size: 60px;">
             {{ __('Solicitud de Aguinaldo') }}
         </h2>
     </x-slot>

@@ -95,11 +95,7 @@
 <style>
 
     /* Asegúrate de que el contenedor principal ocupe todo el alto de la ventana */
-    html, body {
-        height: 100%;
-        margin: 0;
-        overflow: auto;
-    }
+    
 
     .card {
         transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;

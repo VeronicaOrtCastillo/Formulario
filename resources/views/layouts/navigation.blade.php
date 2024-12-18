@@ -10,7 +10,7 @@
                     </a>
                 </div>
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" style="font-family: 'Times New Roman', Times, serif;">
                     @if(Auth::user()->usertype !== 'admin')
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                             {{ __('Inicio') }}
@@ -35,7 +35,7 @@
             </div>
 
             <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ms-2 ml-auto">
+            <div class="hidden sm:flex sm:items-center sm:ms-2 ml-auto" style="font-family: 'Times New Roman', Times, serif;">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
@@ -81,7 +81,7 @@
     </div>
 
         <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden" style="font-family: 'Times New Roman', Times, serif;">
         <div class="pt-2 pb-3 space-y-1">
             @if(Auth::user()->usertype !== 'admin')
                 <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">

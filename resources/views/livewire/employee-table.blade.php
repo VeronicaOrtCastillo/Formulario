@@ -1,5 +1,4 @@
 <div class="overflow-auto">
-    <h1 class="text-xl text-center font-semibold mb-4">Listado de Empleados</h1>
     <table class="table-auto w-full text-left border-collapse rounded-lg shadow-md overflow-hidden">
         <thead class="bg-red-900 text-white">
             <tr>
