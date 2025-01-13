@@ -4,7 +4,6 @@
         <!-- Mostrar mensaje si la solicitud ya fue enviada -->
         <div class="p-6 bg-red-900 text-white text-center font-semibold mt-2" style="font-family: 'Times New Roman', Times, serif; font-size: 60px;">
             <p>Ya has enviado la solicitud</p>
-            <p>Revisaremos la informacion enviada</p>
 
         </div>
         
