@@ -18,6 +18,15 @@ class SolicitudController extends Controller
         /*return view('dashboard');*/
     }
 
+    public function actualizarEstado(Request $request, $id)
+    {
+        $solicitud = Solicitud::findOrFail($id);
+        $solicitud->status = $request->estado;
+        $solicitud->save();
+
+        return response()->json(['success' => true, 'estado' => $solicitud->status]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */

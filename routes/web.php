@@ -35,3 +35,4 @@ Route::get('/admin/Empleados', [HomeController::class,'index'])-> name ('admin.E
 
 Route::get('/solicitudes', [SolicitudController::class, 'index'])->name('solicitudes.index');
 
+Route::post('/solicitudes/{id}/estado', [SolicitudController::class, 'actualizarEstado'])->name('solicitudes.actualizarEstado');

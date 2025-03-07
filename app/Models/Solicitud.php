@@ -18,6 +18,7 @@ class Solicitud extends Model
         'rfc',
         'clabe',
         'files',
+        'status',
         'user_id'
     ];
     

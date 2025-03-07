@@ -21,6 +21,7 @@
                                         <th class="border px-4 py-2 font-semibold text-center">Clabe Interbancaria</th>
                                         <th class="border px-4 py-2 font-semibold text-center">Fecha de Envío</th>
                                         <th class="border px-4 py-2 font-semibold text-center">Archivos</th>
+                                        <th class="border px-4 py-2 font-semibold text-center">Estado</th>
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
@@ -34,6 +35,7 @@
                                             <td class="border border-gray-300 px-4 py-2 text-center">
                                                 {{ $solicitud->created_at->format('d/m/Y') }}
                                             </td>
+
                                             <td class="border border-gray-300 px-4 py-2 text-center">
                                                 @if ($solicitud->files)
                                                     <div class="flex flex-wrap justify-center gap-2">
@@ -51,6 +53,23 @@
                                                     <span class="text-gray-500">Sin archivos</span>
                                                 @endif
                                             </td>
+
+                                            <td class="border border-gray-300 px-4 py-2 text-center">
+                                                @if ($solicitud->status === 'pendiente')
+                                                    <div class="flex justify-center gap-4">
+                                                        <button class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-700 transition actualizar-estado" data-id="{{ $solicitud->id }}" data-estado="aceptado">
+                                                            Aceptar
+                                                        </button>
+                                                        <button class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-700 transition actualizar-estado" data-id="{{ $solicitud->id }}" data-estado="rechazado">
+                                                            Rechazar
+                                                        </button>
+                                                    </div>
+                                                @elseif ($solicitud->status === 'aceptado')
+                                                    <span class="font-semibold text-green-500">Aceptada</span>
+                                                @elseif ($solicitud->status === 'rechazado')
+                                                    <span class="font-semibold text-red-500">Rechazada</span>
+                                                @endif
+                                            </td>
                                         </tr>
                                     @empty
                                         <tr>
@@ -59,6 +78,33 @@
                                     @endforelse
                                 </tbody>
                             </table>
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    document.querySelectorAll('.actualizar-estado').forEach(button => {
+                                        button.addEventListener('click', function () {
+                                            const solicitudId = this.dataset.id;
+                                            const estado = this.dataset.estado;
+                            
+                                            fetch(`/solicitudes/${solicitudId}/estado`, {
+                                                method: 'POST',
+                                                headers: {
+                                                    'Content-Type': 'application/json',
+                                                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                                                },
+                                                body: JSON.stringify({ estado })
+                                            })
+                                            .then(response => response.json())
+                                            .then(data => {
+                                                if (data.success) {
+                                                    location.reload(); // Recargar la página para ver los cambios
+                                                }
+                                            })
+                                            .catch(error => console.error('Error:', error));
+                                        });
+                                    });
+                                });
+                            </script>
+                            
                         </div>
                     </div>
                 </div>
