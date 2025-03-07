@@ -56,16 +56,17 @@
             }
         </script>
 
-        <!-- Remember Me -->
+        <!-- Remember Me 
         <div class="block mt-4">
             <label for="remember_me" class="inline-flex items-center">
                 <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
                 <span class="ms-2 text-sm text-gray-600">{{ __('Recuerdame') }}</span>
             </label>
         </div>
+        -->
 
         <!-- google recaptch -->
-        <div class="form-group mt-4">
+        <div class="form-group my-5 flex justify-center items-center">
             {!! NoCaptcha::renderJs('es', false, 'onloadCallback') !!}
             {!! NoCaptcha::display() !!}
 
@@ -73,7 +74,7 @@
 
         </div>        
 
-        <div class="flex justify-between my-9">
+        <div class="flex justify-between my-5 ">
             <!-- Con x-link mandamoa a llamar al componente link
                  Con slot podremos rrutilizar el componente pero 
                  son repetir contenido

@@ -13,25 +13,26 @@
                 <!-- Navigation Links -->
                 <div class="hidden lg:flex space-x-8 sm:-my-px sm:ms-10" style="font-family: 'Times New Roman', Times, serif;">
                     @if(Auth::user()->usertype !== 'admin')
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="hover:shadow-lg hover:shadow-red-800 hover:font-bold">
                             {{ __('Inicio') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('solicitudes.create')" :active="request()->routeIs('solicitudes.create')" class="hover:shadow-lg hover:shadow-red-800 hover:font-bold">
+                            {{ __('Pago') }}
                         </x-nav-link>
                     @endif
 
                     @if(Auth::user()->usertype === 'admin')
                         <!-- Solo mostrar el enlace si el usuario es admin -->
-                        <x-nav-link :href="route('admin.Empleados')" :active="request()->routeIs('admin.Empleados')">
+                        <x-nav-link :href="route('admin.Empleados')" :active="request()->routeIs('admin.Empleados')" class="hover:shadow-lg hover:shadow-red-800 hover:font-bold">
                             {{ __('Empleados') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('solicitudes.index')" :active="request()->routeIs('solicitudes.index')">
+                        <x-nav-link :href="route('solicitudes.index')" :active="request()->routeIs('solicitudes.index')" class="hover:shadow-lg hover:shadow-red-800 hover:font-bold">
                             {{ __('Solicitudes') }}
                         </x-nav-link>
 
                     @endif
 
-                    <x-nav-link :href="route('solicitudes.create')" :active="request()->routeIs('solicitudes.create')">
-                        {{ __('Pago') }}
-                    </x-nav-link>
+                    
                 </div>
             </div>
 
@@ -71,7 +72,7 @@
 
             <!-- Hamburger -->
             <div class="-me-2 flex items-center lg:hidden">
-                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-green-900 hover:text-green-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-orange-500 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -88,14 +89,15 @@
                 <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                     {{ __('Inicio') }}
                 </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('solicitudes.create')" :active="request()->routeIs('solicitudes.create')">
+                    {{ __('Pago') }}
+                </x-responsive-nav-link>
             @endif
 
-            <x-responsive-nav-link :href="route('solicitudes.create')" :active="request()->routeIs('solicitudes.create')">
-                {{ __('Pago') }}
-            </x-responsive-nav-link>
+            
 
             @if(Auth::user()->usertype === 'admin')
-                <x-responsive-nav-link :href="route('admin.Empleados')" :active="request()->routeIs('admin.Empleados')">
+                <x-responsive-nav-link :href="route('admin.Empleados')" :active="request()->routeIs('admin.Empleados')" class="hover:text-black-300 hover:shadow-lg ">
                     {{ __('Empleados') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('solicitudes.index')" :active="request()->routeIs('solicitudes.index')">
@@ -106,11 +108,12 @@
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
-            <div class="px-4">
+            <div class="px-4 text-center">
                 <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
             </div>
-
+        </div>
+        <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Mi Perfil') }}

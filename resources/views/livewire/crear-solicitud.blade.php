@@ -2,10 +2,20 @@
 <div>
     @if ($solicitudEnviada)
         <!-- Mostrar mensaje si la solicitud ya fue enviada -->
-        <div class="p-6 bg-red-900 text-white text-center font-semibold mt-2" style="font-family: 'Times New Roman', Times, serif; font-size: 60px;">
-            <p>Ya has enviado la solicitud</p>
-
-        </div>
+        <!-- Mostrar mensaje si la solicitud ya fue enviada -->
+        @if ($estadoSolicitud === 'pendiente')
+            <div class="p-6 bg-yellow-500 text-white text-center font-semibold mt-2" style="font-family: 'Times New Roman', Times, serif; font-size: 30px;">
+                <p>Tu solicitud está pendiente de revisión.</p>
+            </div>
+        @elseif ($estadoSolicitud === 'aceptado')
+            <div class="p-6 bg-green-500 text-white text-center font-semibold mt-2" style="font-family: 'Times New Roman', Times, serif; font-size: 30px;">
+                <p>¡Felicidades! Tu solicitud ha sido aceptada.</p>
+            </div>
+        @elseif ($estadoSolicitud === 'rechazado')
+            <div class="p-6 bg-red-500 text-white text-center font-semibold mt-2" style="font-family: 'Times New Roman', Times, serif; font-size: 30px;">
+                <p>Lo sentimos, tu solicitud ha sido rechazada.</p>
+            </div>
+        @endif
         
     @elseif (!$userStatus || auth()->user()->usertype == 'admin') <!-- Mostrar si el usuario está deshabilitado o es administrador -->
         
@@ -38,6 +48,7 @@
                         type="text" 
                         wire:model="curp" 
                         :value="old('curp')" 
+                        maxlength="18" 
                         style="text-transform: uppercase; font-size: 0.875rem;"
                         placeholder="Ingresa tu curp"
                     />

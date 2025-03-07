@@ -18,7 +18,7 @@
                     <td class="px-4 py-2 border border-gray-300 text-center">{{ $employee->status ? 'Activo' : 'Inactivo' }}</td>
                     <td class="px-4 py-2 border border-gray-300 text-center">
                         @if($employee->status)
-                            <button wire:click="deactivate({{ $employee->id }})" class="bg-red-800 text-white px-2 py-1 rounded hover:bg-red-700 transition">
+                            <button wire:click="deactivate({{ $employee->id }})" class="bg-green-800 text-white px-2 py-1 rounded hover:bg-green-700 transition">
                                 Desactivar
                             </button>
                         @else

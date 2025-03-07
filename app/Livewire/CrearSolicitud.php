@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Solicitud;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\SolicitudEstadoNotificacion;
 
 class CrearSolicitud extends Component
 {
@@ -16,6 +17,9 @@ class CrearSolicitud extends Component
     public $clabe;
     public $files = [];
     public $solicitudEnviada = false;
+    public $estadoSolicitud; // Nueva propiedad para el estado de la solicitud
+    public $userStatus; // Status del usuario
+
 
     use WithFileUploads;
 
@@ -34,9 +38,20 @@ class CrearSolicitud extends Component
         $this->name = Auth::user()->name;
         $this->email = Auth::user()->email;
 
+        // Obtener el estado del usuario (habilitado o deshabilitado)
+        $this->userStatus = Auth::user()->status; 
+
         // Verificar si el usuario ya tiene una solicitud
-        $this->solicitudEnviada = Solicitud::where('user_id', Auth::id())->exists();
-    
+        $solicitud = Solicitud::where('user_id', Auth::id())->first();
+
+        if ($solicitud) {
+            $this->solicitudEnviada = true;
+            $this->estadoSolicitud = $solicitud->status; // Asignar el estado de la solicitud
+        } else {
+            $this->estadoSolicitud = null; // Si no hay solicitud, el estado es nulo
+        }
+
+        
     }
 
     public function crearSolicitud()
@@ -70,10 +85,13 @@ class CrearSolicitud extends Component
             'clabe' => $datos['clabe'],
             'files' => json_encode($archivosGuardados),
             'user_id'=> Auth::id(),
+
         ]);
 
         // Actualizar el estado de la solicitud
         $this->solicitudEnviada = true;
+        $this->estadoSolicitud = 'pendiente'; // Estado inicial cuando se crea la solicitud
+
         
         //crear el mensaje
         session()->flash('mensaje','Tu solicitud se registro correctamente');
@@ -81,14 +99,17 @@ class CrearSolicitud extends Component
         //redireccionar al usuario
         return redirect()->route('dashboard');
         
-
     }
+
+
+        // Notificar al usuario de la solicitud
 
     public function render()
     {
-        // Pasar el estado del usuario a la vista
-        $userStatus = Auth::user()->status; // Asumiendo que 'status' indica habilitado o deshabilitado
+        return view('livewire.crear-solicitud',[
+            'estadoSolicitud' => $this->estadoSolicitud,
+            'userStatus' => $this->userStatus,
 
-        return view('livewire.crear-solicitud',['userStatus' => $userStatus]);
+        ]);
     }
 }
