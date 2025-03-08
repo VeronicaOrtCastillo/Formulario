@@ -4,11 +4,11 @@
 
 <x-app-layout>
     <x-slot name="header">
-        <h1 class="text-2xl font-bold text-red-900 text-center mb-6" style="font-family: 'Times New Roman', Times, serif; font-size: 50px;">
+        <h1 class="text-2xl font-bold text-red-900 text-center mb-4" style="font-family: 'Times New Roman', Times, serif; font-size: 50px;">
             {{ __('Solicitudes Recibidas') }}
         </h1>
-            <div class="py-4">
-                <div class="max-w-7xl mx-auto sm:px-4 lg:px-6">
+            <div class="py-1">
+                <div class="max-w-7xl mx-auto sm:px-2 lg:px-4">
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 bg-white border-b border-gray-200 overflow-auto">
                             <table class="table-auto w-full text-left border-collapse rounded-lg shadow-md overflow-hidden">
@@ -38,9 +38,9 @@
 
                                             <td class="border border-gray-300 px-4 py-2 text-center">
                                                 @if ($solicitud->files)
-                                                    <div class="flex flex-wrap justify-center gap-2">
+                                                    <div class="flex flex-wrap justify-center gap-0.5">
                                                         @foreach (json_decode($solicitud->files) as $file)
-                                                            <a href="{{ Storage::url($file) }}" target="_blank" class="inline-block mb-2 mr-2">
+                                                            <a href="{{ Storage::url($file) }}" target="_blank" class="inline-block  mr-2">
                                                                 <img 
                                                                     src="{{ asset('img/PDF_I.png') }}" 
                                                                     alt="PDF" 
@@ -56,12 +56,12 @@
 
                                             <td class="border border-gray-300 px-4 py-2 text-center">
                                                 @if ($solicitud->status === 'pendiente')
-                                                    <div class="flex justify-center gap-4">
-                                                        <button class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-700 transition actualizar-estado" data-id="{{ $solicitud->id }}" data-estado="aceptado">
-                                                            Aceptar
+                                                    <div class="flex justify-center gap-2">
+                                                        <button class="bg-green-500 text-white p-1 rounded hover:bg-green-700 transition actualizar-estado" data-id="{{ $solicitud->id }}" data-estado="aceptado" title="Aceptar">
+                                                            ✅
                                                         </button>
-                                                        <button class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-700 transition actualizar-estado" data-id="{{ $solicitud->id }}" data-estado="rechazado">
-                                                            Rechazar
+                                                        <button class="bg-red-200 text-white p-1 rounded hover:bg-red-700 transition actualizar-estado" data-id="{{ $solicitud->id }}" data-estado="rechazado" title="Rechazar">
+                                                            ❌
                                                         </button>
                                                     </div>
                                                 @elseif ($solicitud->status === 'aceptado')
@@ -70,6 +70,7 @@
                                                     <span class="font-semibold text-red-500">Rechazada</span>
                                                 @endif
                                             </td>
+                                            
                                         </tr>
                                     @empty
                                         <tr>

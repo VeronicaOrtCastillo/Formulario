@@ -19,6 +19,8 @@ class CrearSolicitud extends Component
     public $solicitudEnviada = false;
     public $estadoSolicitud; // Nueva propiedad para el estado de la solicitud
     public $userStatus; // Status del usuario
+    public $newFile;
+
 
 
     use WithFileUploads;
@@ -70,8 +72,8 @@ class CrearSolicitud extends Component
 
         //almacenar los archivos
         $archivosGuardados = [];
-        if (!empty($this->files)) {
-            foreach ($this->files as $file) {
+        foreach ($this->files as $file) {
+            if (!is_string($file)) { // Evita procesar archivos ya guardados en ediciones
                 $archivosGuardados[] = $file->store('documentos', 'public');
             }
         }
@@ -101,8 +103,21 @@ class CrearSolicitud extends Component
         
     }
 
+    public function updatedNewFile()
+    {
+        if ($this->newFile) {
+            $this->files[] = $this->newFile;
+            $this->newFile = null; // Reiniciar la propiedad después de agregar
+        }
+    }
 
-        // Notificar al usuario de la solicitud
+
+    public function eliminarArchivo($index)
+    {
+        unset($this->files[$index]);
+        $this->files = array_values($this->files); // Reindexar el array
+    }
+
 
     public function render()
     {
@@ -112,4 +127,6 @@ class CrearSolicitud extends Component
 
         ]);
     }
+
+    
 }

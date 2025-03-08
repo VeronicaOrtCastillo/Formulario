@@ -117,25 +117,32 @@
                 </div>
                 <div>
                     <x-input-label for="files" :value="__('Sube los archivos solicitados')" />
-                    <x-text-input
-                        id="files"
-                        class="block mt-1 w-full"
-                        type="file"
-                        wire:model="files"
-                        multiple
-                        accept="application/pdf"
+                    <input 
+                        id="files" 
+                        type="file" 
+                        wire:model="newFile" 
+                        accept="application/pdf" 
+                        class="hidden"
+                        onchange="this.dispatchEvent(new InputEvent('input'))"
                     />
-                    <ul id="file-list">
-                        @if ($files)
-                            @foreach ($files as $file)
-                                <li>{{ $file->getClientOriginalName() }}</li>
-                            @endforeach
-                        @endif
+
+                    <label for="files" class="mt-2 bg-blue-500 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded cursor-pointer">
+                        Seleccionar Archivo
+                    </label>
+
+                    <ul id="file-list" class="mt-2">
+                        @foreach ($files as $index => $file)
+                            <li class="flex justify-between items-center bg-gray-200 p-2 rounded mb-2">
+                                <span>{{ is_string($file) ? basename($file) : $file->getClientOriginalName() }}</span>
+                                <button type="button" wire:click="eliminarArchivo({{ $index }})" class="text-red-500">X</button>
+                            </li>
+                        @endforeach
                     </ul>
 
                     @error('files')
-                    <livewire:mostrar-alerta :message="$message" />
+                        <livewire:mostrar-alerta :message="$message" />
                     @enderror
+
                 </div>
 
                 <div style="text-align: center; color: #969292e7;">
@@ -157,5 +164,7 @@
         </form>
     @else
         <p class="p-6 bg-red-900 text-white text-center font-semibold mt-2">Este formulario no está disponible para ti</p>
+        </p>
+        
     @endif
 </div>
