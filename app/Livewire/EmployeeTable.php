@@ -11,7 +11,9 @@ class EmployeeTable extends Component
     public function render()
     {
         // Filtramos para obtener solo empleados
-        $employees = User::where('usertype', 'user')->get();
+        $employees = User::where('usertype', 'user')
+                            ->orderBy('id', 'asc') // Mantiene siempre el mismo orden
+                            ->get();
 
         return view('livewire.employee-table', compact('employees'));
     }
