@@ -12,7 +12,7 @@ WORKDIR /var/www
 
 # Copiar el código de la aplicación
 COPY . .
-COPY .env .env
+
 
 
 # Instalar las dependencias de Laravel (a través de Composer)
