@@ -25,4 +25,4 @@ RUN chown -R www-data:www-data /var/www
 EXPOSE 8000
 
 # Ejecutar el comando para iniciar PHP-FPM
-CMD ["php-fpm"]
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
