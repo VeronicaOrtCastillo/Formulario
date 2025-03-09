@@ -27,6 +27,7 @@ RUN composer install --no-dev --optimize-autoloader
 # Copiar la configuración de Nginx
 COPY nginx/default.conf /etc/nginx/sites-available/default
 
+
 # Establecer los permisos correctos para los archivos
 RUN chown -R www-data:www-data /var/www
 
