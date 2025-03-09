@@ -1,38 +1,35 @@
-# Usa la imagen oficial de PHP como base
-FROM php:8.2-fpm
+# Imagen base de PHP con Apache
+FROM php:8.2-apache
 
-# Instalación de dependencias
+# Instalar dependencias
 RUN apt-get update && apt-get install -y \
-    nginx \
     libpng-dev \
     libjpeg-dev \
     libfreetype6-dev \
     zip \
-    git \
     unzip \
-    && apt-get clean
+    git \
+    curl \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd pdo pdo_mysql
 
-# Instalar Composer (gestor de dependencias de PHP)
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+# Instalar Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Configurar el directorio de trabajo
-WORKDIR /var/www
+# Configurar directorio de trabajo
+WORKDIR /var/www/html
 
-# Copiar el código de la aplicación
+# Copiar los archivos del proyecto
 COPY . .
 
-# Instalar las dependencias de Laravel (a través de Composer)
+# Instalar dependencias de Laravel
 RUN composer install --no-dev --optimize-autoloader
 
-# Copiar la configuración de Nginx
-COPY nginx/default.conf /etc/nginx/sites-available/default
+# Establecer permisos
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
+# Exponer el puerto 80
+EXPOSE 80
 
-# Establecer los permisos correctos para los archivos
-RUN chown -R www-data:www-data /var/www
-
-# Exponer el puerto 9000 para que PHP-FPM esté disponible
-EXPOSE 8080
-
-# Iniciar Nginx y PHP-FPM
-CMD service nginx start && php-fpm
+# Comando para iniciar el servidor
+CMD ["apache2-foreground"]
