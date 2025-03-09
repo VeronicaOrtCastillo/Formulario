@@ -13,8 +13,6 @@ WORKDIR /var/www
 # Copiar el código de la aplicación
 COPY . .
 
-
-
 # Instalar las dependencias de Laravel (a través de Composer)
 RUN composer install --no-dev --optimize-autoloader
 
@@ -22,7 +20,7 @@ RUN composer install --no-dev --optimize-autoloader
 RUN chown -R www-data:www-data /var/www
 
 # Exponer el puerto 9000 para que PHP-FPM esté disponible
-EXPOSE 8000
+EXPOSE 8080
 
-# Ejecutar el comando para iniciar PHP-FPM
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
+# Ejecutar el comando para iniciar PHP-FPM y Laravel en el puerto 8080
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8080"]
