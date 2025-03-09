@@ -12,11 +12,11 @@ class SolicitudController extends Controller
      */
     public function index()
     {
-        $solicitudes = Solicitud::all(); // Obtenemos todas las solicitudes
+        $solicitudes = Solicitud::orderBy('id', 'asc')->get(); // O 'desc' si quieres el más reciente arriba
         return view('solicitudes.index', compact('solicitudes'));
+    }
 
         /*return view('dashboard');*/
-    }
 
     public function actualizarEstado(Request $request, $id)
     {
